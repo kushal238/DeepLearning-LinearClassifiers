@@ -5,7 +5,7 @@ import numpy as np
 
 class Softmax:
     def __init__(self, n_class: int, lr: float, epochs: int, reg_const: float):
-        """Initialize a new classifier.
+        """Initializing a new classifier.
 
         Parameters:
             n_class: the number of classes
@@ -29,7 +29,7 @@ class Softmax:
         return (X - self.mean) / self.std
 
     def calc_gradient(self, X_train: np.ndarray, y_train: np.ndarray) -> np.ndarray:
-        """Calculate gradient of the softmax loss.
+        """Calculating gradient of the softmax loss.
 
         Inputs have dimension D, there are C classes, and we operate on
         mini-batches of N examples.
@@ -74,7 +74,7 @@ class Softmax:
         return np.array([acc_test])
     
     def train(self, X_train: np.ndarray, y_train: np.ndarray, X_val, y_val):
-        """Train the classifier.
+        """Training the classifier.
 
         Hint: operate on mini-batches of data for SGD.
 
@@ -83,7 +83,6 @@ class Softmax:
                 N examples with D dimensions
             y_train: a numpy array of shape (N,) containing training labels
         """
-        # TODO: implement me
         np.random.seed(0)
         initial_lr = self.lr
         X_train = self.standardize(X_train, training=True)
@@ -110,7 +109,7 @@ class Softmax:
 
 
     def predict(self, X_test: np.ndarray) -> np.ndarray:
-        """Use the trained weights to predict labels for test data points.
+        """using the trained weights to predict labels for test data points.
 
         Parameters:
             X_test: a numpy array of shape (N, D) containing testing data;
@@ -121,7 +120,6 @@ class Softmax:
                 length N, where each element is an integer giving the predicted
                 class.
         """
-        # TODO: implement me
         X_test = self.standardize(X_test)
         scores = np.dot(X_test, self.w.T)
         y_pred = np.argmax(scores, axis=1)
